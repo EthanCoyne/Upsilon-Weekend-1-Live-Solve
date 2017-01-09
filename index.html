@@ -2,18 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="app.js"></script>
+    <script src="jquery.js"></script>
+    <script type="text/javascript" src="client.js"></script>
     <title>Employee Form</title>
   </head>
   <body>
     <!-- Form section for new employee -->
     <section>
-      <input type="text" name="firstName" placeholder="First Name">
-      <input type="text" name="lastName" placeholder="Last Name">
-      <input type="text" name="number" placeholder="Employee ID Number">
-      <input type="text" name="title" placeholder="Title">
-      <input type="text" name="salary" placeholder="Salary">
-      <button type="submit" name="newEmployeeButton">Submit</button>
+      <form id="newEmployeeForm">
+        <input type="text" name="firstName" placeholder="First Name">
+        <input type="text" name="lastName" placeholder="Last Name">
+        <input type="text" name="number" placeholder="Employee ID Number">
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="salary" placeholder="Salary">
+        <button type="submit" name="newEmployeeButton">Submit</button>
+      </form>
     </section>
 
     <!-- Table of employees list -->
