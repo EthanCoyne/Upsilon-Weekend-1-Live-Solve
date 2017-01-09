@@ -5,7 +5,9 @@ $(function(){
   // direct the delete button to remove the parentparent (td in this case) to get
   //the whole line.
   $('#employeesTable').on('click', '.deleteButton', function(){
-    var salaryToRemoveFromTotal = $(this).parent().prev().text();
+    console.log('data is: ', $(this).parent().data()); // this is an object like {salary: "24"}
+    var salaryToRemoveFromTotal = $(this).parent().data('salary');
+    // var salaryToRemoveFromTotal = $(this).parent().parent();
     updateMonthlySalary('-' + salaryToRemoveFromTotal);
     $(this).parent().parent().remove();
   });
@@ -28,17 +30,24 @@ $(function(){
     console.log(newEmployeeObject);
 
 // blueprint for employee information to be added to the DOM
-  var newRow =   '<tr>' +
+  var $newRow =   $('<tr>' +
       '<td>' + newEmployeeObject.firstName + '</td>' +
       '<td>' + newEmployeeObject.lastName + '</td>' +
       '<td>' + newEmployeeObject.number + '</td>' +
       '<td>' + newEmployeeObject.title + '</td>' +
       '<td>' + newEmployeeObject.salary + '</td>' +
-      '<td><button class="deleteButton">Delete</button></td>' +
-    '</tr>';
+    '</tr>');
 
+    //creating the delete button
+    var $deleteButton = $('<td><button class="deleteButton">Delete</button></td>');
+
+    // storing 'salary' data into the $deleteButton
+    $deleteButton.data('salary', newEmployeeObject.salary);
+
+    //append the delete button to $newRow
+    $newRow.append($deleteButton);
     // append the new employee to the table
-    $('#employeesTable').append(newRow)
+    $('#employeesTable').append($newRow)
 
     //clear form input fields
     $('#newEmployeeForm input[type="text"]').val('');
