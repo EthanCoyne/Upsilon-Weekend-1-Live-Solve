@@ -2,7 +2,11 @@ $(function(){
   console.log('jQuery is loaded correctly!!!');
   var totalMonthlySalary = 0;
 
+  // direct the delete button to remove the parentparent (td in this case) to get
+  //the whole line.
   $('#employeesTable').on('click', '.deleteButton', function(){
+    var salaryToRemoveFromTotal = $(this).parent().prev().text();
+    updateMonthlySalary('-' + salaryToRemoveFromTotal);
     $(this).parent().parent().remove();
   });
 
@@ -40,13 +44,18 @@ $(function(){
     $('#newEmployeeForm input[type="text"]').val('');
     $('#newEmployeeForm input[type="number"]').val('');
 
+    //pass in newEmployeeObject.salary since a function cant grab that variable
+    updateMonthlySalary(newEmployeeObject.salary);
 
+
+  });
+  function updateMonthlySalary(newEmployeeSalary) {
     //With new employee, divide salary by 12, add to current totalMonthlySalary
-    totalMonthlySalary += newEmployeeObject.salary / 12;
+    console.log(typeof newEmployeeSalary);
+    totalMonthlySalary += newEmployeeSalary / 12;
     console.log('totalMonthlySalary is ' + totalMonthlySalary);
 
     // Change the text of totalMonthlySalary to a US dollar amount.
     $('#monthlySalary').text(totalMonthlySalary.toLocaleString('en-us', {style: 'currency', currency: 'USD'}))
-
-  });
+  }
 });
