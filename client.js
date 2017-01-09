@@ -1,5 +1,7 @@
 $(function(){
   console.log('jQuery is loaded correctly!!!');
+  var totalMonthlySalary = 0;
+
   $('#newEmployeeForm').on('submit', function(event){
     event.preventDefault(); // stop page from reloading and redirecting
     console.log('Form has been submitted!!');
@@ -17,6 +19,7 @@ $(function(){
     }
     console.log(newEmployeeObject);
 
+// blueprint for employee information to be added to the DOM
   var newRow =   '<tr>' +
       '<td>' + newEmployeeObject.firstName + '</td>' +
       '<td>' + newEmployeeObject.lastName + '</td>' +
@@ -25,6 +28,11 @@ $(function(){
       '<td>' + newEmployeeObject.salary + '</td>' +
     '</tr>';
 
+    // append the new employee to the table
     $('#employeesTable').append(newRow)
+
+    //clear form input fields
+    $('#newEmployeeForm input[type="text"]').val('');
+    $('#newEmployeeForm input[type="number"]').val('');
   });
 });
