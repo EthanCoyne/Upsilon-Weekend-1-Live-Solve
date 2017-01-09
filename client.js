@@ -2,6 +2,10 @@ $(function(){
   console.log('jQuery is loaded correctly!!!');
   var totalMonthlySalary = 0;
 
+  $('#employeesTable').on('click', '.deleteButton', function(){
+    $(this).parent().parent().remove();
+  });
+
   $('#newEmployeeForm').on('submit', function(event){
     event.preventDefault(); // stop page from reloading and redirecting
     console.log('Form has been submitted!!');
@@ -26,6 +30,7 @@ $(function(){
       '<td>' + newEmployeeObject.number + '</td>' +
       '<td>' + newEmployeeObject.title + '</td>' +
       '<td>' + newEmployeeObject.salary + '</td>' +
+      '<td><button class="deleteButton">Delete</button></td>' +
     '</tr>';
 
     // append the new employee to the table
@@ -40,6 +45,7 @@ $(function(){
     totalMonthlySalary += newEmployeeObject.salary / 12;
     console.log('totalMonthlySalary is ' + totalMonthlySalary);
 
+    // Change the text of totalMonthlySalary to a US dollar amount.
     $('#monthlySalary').text(totalMonthlySalary.toLocaleString('en-us', {style: 'currency', currency: 'USD'}))
 
   });
