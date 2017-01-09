@@ -40,7 +40,7 @@ $(function(){
     totalMonthlySalary += newEmployeeObject.salary / 12;
     console.log('totalMonthlySalary is ' + totalMonthlySalary);
 
-    $('#monthlySalary').text(totalMonthlySalary)
+    $('#monthlySalary').text(totalMonthlySalary.toLocaleString('en-us', {style: 'currency', currency: 'USD'}))
 
   });
 });
